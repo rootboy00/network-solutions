@@ -25,14 +25,15 @@ def CheckDate( Date ):
     current_month = today.month
     current_year = today.year
     end_date = datetime.datetime.strptime( str(current_year) + '-' + str( current_month+1 ) + '-1', '%Y-%m-%d')
-    return (Date < end_date)
+    start_date = datetime.datetime.strptime( str(current_year) + '-' + str( current_month ) + '-1', '%Y-%m-%d')
+
+    return (Date < end_date) and (Date > start_date)
 
 if __name__ == "__main__":
     try:
         Json_Str = ""
         for args in sys.argv[1:]:
             Json_Str += args
-        print(f"Print: " +Json_Str)
     except:
         print(f"Укажите Json Строку.")
         exit()
